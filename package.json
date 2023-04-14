@@ -12,6 +12,7 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "v-mask": "^2.3.0",
     "vue": "^3.2.47",
     "vue-material-design-icons": "^5.2.0",
     "vue-router": "^4.1.6"

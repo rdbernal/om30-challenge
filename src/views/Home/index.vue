@@ -1,5 +1,6 @@
 <script setup lang="ts">
 // Components
+import CustomInput from "@/components/CustomInput/index.vue";
 import PatientCard from '@/components/PatientCard/index.vue'
 // Models
 import PatientModel from '@/models/Patient'
@@ -64,6 +65,10 @@ const patients = [
 <template>
   <section class="content">
     <main>
+      <div class="filter">
+        <CustomInput label="Filtrar" placeholder="Digite para buscar"/>
+      </div>
+
       <div class="patients">
         <PatientCard v-for="patient in patients" :key="patient.id" :patient="patient" />
       </div>
@@ -75,6 +80,12 @@ const patients = [
 .content {
   min-height: calc(100vh - 65.27px);
   padding: 0 1rem;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 .patients {
   display: grid;
