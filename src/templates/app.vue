@@ -1,9 +1,19 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router'
+// Components
+import Sidebar from "@/components/Sidebar/index.vue";
 </script>
 
 <template>
-  <RouterView />
+  <section class="page">
+    <Sidebar />
+    <RouterView />
+  </section>
 </template>
 
-<style scoped></style>
+<style scoped>
+.page {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+}
+</style>
