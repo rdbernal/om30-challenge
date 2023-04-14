@@ -1,9 +1,12 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import { Form } from 'vee-validate'
+</script>
 
 <template>
-  <form>
-    <slot></slot>
-  </form>
+  <Form v-slot="{ errors }">
+    
+    <slot :errors="errors"></slot>
+  </Form>
 </template>
 
 <style scoped></style>

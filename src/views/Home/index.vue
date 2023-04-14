@@ -105,6 +105,10 @@ main {
   row-gap: 1rem;
 }
 
+.new-patient {
+  width: max-content;
+}
+
 .new-patient > a > button {
   background: #00bd7e;
   color: #000000;

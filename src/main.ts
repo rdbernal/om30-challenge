@@ -3,6 +3,7 @@ import App from './App.vue'
 import router from './router'
 
 import './assets/main.css'
+import './config/validation';
 
 const app = createApp(App)
 

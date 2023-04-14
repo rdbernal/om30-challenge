@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { reactive } from 'vue'
+import { toRef } from 'vue'
 // Components
 import CustomForm from '@/components/CustomForm/index.vue'
 import CustomInput from '@/components/CustomInput/index.vue'
@@ -13,16 +13,24 @@ const props = defineProps({
   }
 })
 // Data
-const currentPatient = reactive({ ...props.patient, address: { ...props.patient.address } })
+const currentPatient = toRef(props, "patient");
+// Methods
+function handlePostalCode() {
+  console.log("handle postal code")
+}
+
 </script>
 
 <template>
-  <CustomForm>
+  <CustomForm v-slot="{ errors }">
+    {{ errors }}
+
     <div class="fields">
       <CustomInput
         label="Nome completo"
         placeholder="Nome do paciente"
         v-model="currentPatient.fullName"
+        rules="required"
       />
       <CustomInput
         label="Nome da mãe"
@@ -40,18 +48,21 @@ const currentPatient = reactive({ ...props.patient, address: { ...props.patient.
         placeholder="CPF"
         mask="###.###.###-##"
         v-model="currentPatient.registrationId"
+        rules="cpf"
       />
       <CustomInput
         label="Cartão nacional de saúde"
         placeholder="Número do CNS"
         mask="### #### #### ####"
         v-model="currentPatient.healthcareId"
+        rules="cns"
       />
       <CustomInput
         label="CEP"
         placeholder="CEP"
         mask="#####-###"
         v-model="currentPatient.address.zipCode"
+        @input="handlePostalCode"
       />
       <CustomInput
         label="Endereço"
@@ -83,8 +94,8 @@ const currentPatient = reactive({ ...props.patient, address: { ...props.patient.
 <style scoped>
 .fields {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  column-gap: 1rem;
-  row-gap: 1rem;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 2rem;
+  row-gap: 2rem;
 }
 </style>

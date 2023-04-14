@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { reactive, computed } from 'vue'
 import { vMaska } from 'maska'
+import { Field } from 'vee-validate'
 // Events
 const emit = defineEmits(['update:modelValue'])
 // Props
@@ -26,6 +27,10 @@ const props = defineProps({
   },
   modelValue: {
     type: [String, Date, Number]
+  },
+  rules: {
+    type: String,
+    default: ''
   }
 })
 // Data
@@ -43,7 +48,14 @@ const content = computed({
 <template>
   <div class="input-container">
     <label>{{ label }}</label>
-    <input :type="type" :placeholder="placeholder" v-maska:[maskOption] v-model="content" />
+    <Field
+      :name="label"
+      :type="type"
+      :placeholder="placeholder"
+      :rules="rules"
+      v-maska:[maskOption]
+      v-model="content"
+    />
   </div>
 </template>
 
@@ -55,6 +67,7 @@ const content = computed({
 }
 
 input {
-  padding: 0.5rem 1rem;
+  padding: 0.75rem 1rem;
+  border: none;
 }
 </style>
