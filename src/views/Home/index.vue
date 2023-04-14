@@ -1,7 +1,9 @@
 <script setup lang="ts">
 // Components
-import CustomInput from "@/components/CustomInput/index.vue";
+import CustomInput from '@/components/CustomInput/index.vue'
 import PatientCard from '@/components/PatientCard/index.vue'
+// Icons
+import Plus from 'vue-material-design-icons/Plus.vue'
 // Models
 import PatientModel from '@/models/Patient'
 import AddressModel from '@/models/Address'
@@ -66,7 +68,16 @@ const patients = [
   <section class="content">
     <main>
       <div class="filter">
-        <CustomInput label="Filtrar" placeholder="Digite para buscar"/>
+        <CustomInput label="Filtrar" placeholder="Digite para buscar" />
+      </div>
+
+      <div class="new-patient">
+        <RouterLink :to="{ name: 'register' }">
+          <button>
+            <Plus />
+            Adicionar paciente
+          </button>
+        </RouterLink>
       </div>
 
       <div class="patients">
@@ -89,8 +100,13 @@ main {
 }
 .patients {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   column-gap: 1rem;
   row-gap: 1rem;
+}
+
+.new-patient > a > button {
+  background: #00bd7e;
+  color: #000000;
 }
 </style>

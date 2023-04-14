@@ -12,7 +12,7 @@ const props = defineProps({
     required: true
   }
 })
-// Refs
+// Data
 const showModal = ref(false)
 //Computeds
 const address = computed(() => props.patient.address)
@@ -50,8 +50,10 @@ const address = computed(() => props.patient.address)
     </main>
 
     <footer>
-      <button @click="() => (showModal = true)">Detalhes</button>
-      <button>Editar</button>
+      <button class="detail-button" @click="() => (showModal = true)">Detalhes</button>
+      <RouterLink :to="{ name: 'edit' }">
+        <button class="edit-button">Editar</button>
+      </RouterLink>
     </footer>
   </article>
 </template>
@@ -108,5 +110,17 @@ footer {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+}
+
+footer > .detail-button {
+  width: 100%;
+  background: #18C1F0;
+  color: #000000;
+}
+
+footer > a > .edit-button {
+  width: 100%;
+  background: hsla(160, 100%, 37%, 1);
+  color: #000000;
 }
 </style>
