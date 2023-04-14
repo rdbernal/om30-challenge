@@ -9,6 +9,12 @@
     "ignoreDeprecations": "5.0",
     "noImplicitAny": false,
     "allowJs": true,
+    "target": "es2016",
+    "lib": [
+        "es2017",
+        "dom",
+        "scripthost"
+    ],
   },
 
   "references": [

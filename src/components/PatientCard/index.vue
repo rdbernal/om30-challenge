@@ -15,7 +15,17 @@ const props = defineProps({
 // Data
 const showModal = ref(false)
 //Computeds
-const address = computed(() => props.patient.address)
+const address = computed(() => props.patient.address);
+
+const birthDate = computed(() => {
+  const date = props.patient.birthDate;
+
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+
+  return `${day}/${month}/${year}`;
+})
 </script>
 
 <template>
@@ -41,7 +51,7 @@ const address = computed(() => props.patient.address)
     <main>
       <div>
         <label>Data de nascimento</label>
-        <span>{{ patient.birthDate }}</span>
+        <span>{{ birthDate }}</span>
       </div>
       <div>
         <label>CNS</label>
