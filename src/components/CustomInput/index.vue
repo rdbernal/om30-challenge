@@ -1,42 +1,35 @@
 <script lang="ts" setup>
+import { reactive } from 'vue'
+import { vMaska } from 'maska'
 
 const props = defineProps({
   label: {
     type: String,
-    required: true,
+    required: true
   },
   placeholder: {
     type: String,
-    default: "..."
+    default: '...'
   },
   type: {
     type: String,
-    default: "text"
+    default: 'text'
+  },
+  mask: {
+    type: String
   }
 })
 
-/*
-PODE SER:
- - NOME
- - DATA
- - CPF
- - CARTEIRA DE SAÚDE
-  - RUA
-  - BAIRRO
-  - CEP
-  - NÚMERO
-  - COMPLEMENTO
-  - ESTADO
-  - CIDADE
-*/
+const maskOption = reactive({
+  mask: props.mask,
+  eager: true
+})
 </script>
-
-
 
 <template>
   <div class="input-container">
     <label>{{ label }}</label>
-    <input :type="type" :placeholder="placeholder"/>
+    <input :type="type" :placeholder="placeholder" v-maska:[maskOption] />
   </div>
 </template>
 
