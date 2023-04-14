@@ -5,6 +5,11 @@ import CustomForm from '@/components/CustomForm/index.vue'
 import CustomInput from '@/components/CustomInput/index.vue'
 // Models
 import PatientModel from '@/models/Patient'
+import AddressModel from '@/models/Address'
+// Services
+import ViaCepService from '@/services/ViaCep'
+// Services instances
+const viaCepService = new ViaCepService()
 // Props
 const props = defineProps({
   patient: {
@@ -13,12 +18,24 @@ const props = defineProps({
   }
 })
 // Data
-const currentPatient = toRef(props, "patient");
+const currentPatient = toRef(props, 'patient')
 // Methods
 function handlePostalCode() {
-  console.log("handle postal code")
+  const zipCode = currentPatient.value.address.zipCode.replace('-', '')
+  if (zipCode.length === 8) {
+    loadAddress(zipCode)
+  }
 }
 
+async function loadAddress(zipCode: string) {
+  const response = await viaCepService.getAddress(zipCode)
+  const address = AddressModel.serializeViaCepResponse(response)
+  updatePatientAddress(address)
+}
+
+function updatePatientAddress(address: AddressModel) {
+  currentPatient.value.address = { ...address, zipCode: currentPatient.value.address.zipCode }
+}
 </script>
 
 <template>
