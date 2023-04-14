@@ -5,7 +5,6 @@ import { RouterLink } from 'vue-router'
 <template>
   <nav>
     <RouterLink :to="{ name: 'home' }"> OM30 - H34lth </RouterLink>
-
     <button class="log-out">Sair</button>
   </nav>
 </template>
@@ -18,7 +17,6 @@ nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-
 }
 
 a {
@@ -35,5 +33,4 @@ a {
   font-weight: bold;
   cursor: pointer;
 }
-
 </style>

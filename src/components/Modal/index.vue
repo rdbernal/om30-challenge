@@ -1,0 +1,82 @@
+<script lang="ts" setup>
+import { defineEmits } from "vue";
+// Icons
+import Close from "vue-material-design-icons/Close.vue";
+
+const emit = defineEmits(["close"]);
+
+//Methods
+function handleBackgroundClick(event: Event) {
+  const {target, currentTarget} = event;
+  if (target === currentTarget) {
+    closeModal();
+  }
+}
+
+function closeModal() {
+  emit("close");
+}
+</script>
+
+<template>
+  <section class="modal-background" @click="handleBackgroundClick">
+    <div class="modal">
+      <header>
+        <slot name="header"></slot>
+        <button class="close-button" @click="closeModal">
+          <Close />
+        </button>
+      </header>
+
+      <main>
+        <slot></slot>
+      </main>
+
+      <footer>
+        <slot name="footer"></slot>
+      </footer>
+    </div>
+  </section>
+</template>
+
+<style scoped>
+.modal-background {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  background: rgba(0, 0, 0, 0.62);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal {
+  min-width: 300px;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background: var(--vt-c-black-mute);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.close-button {
+  position: absolute;
+  right: 0;
+  top: 0;
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 1rem;
+  color: #FFFFFF;
+  padding: 0;
+}
+
+header {
+  padding-right: 2rem;
+}
+</style>
