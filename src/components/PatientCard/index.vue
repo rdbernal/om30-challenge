@@ -1,7 +1,10 @@
 <script lang="ts" setup>
-import { computed } from "vue";
+import { computed, ref } from 'vue'
+// Components
+import Modal from '@/components/Modal/index.vue'
+import PatientDetails from '@/components/PatientDetails/index.vue'
 // Models
-import PatientModel from "@/models/Patient";
+import PatientModel from '@/models/Patient'
 // Props
 const props = defineProps({
   patient: {
@@ -9,12 +12,21 @@ const props = defineProps({
     required: true
   }
 })
+// Refs
+const showModal = ref(false)
 //Computeds
 const address = computed(() => props.patient.address)
 </script>
 
 <template>
-  <article>
+  <article class="card">
+    <Modal v-if="showModal" @close="() => (showModal = false)">
+      <template #header>
+        <h3>Detalhes</h3>
+      </template>
+      <PatientDetails :patient="patient" />
+    </Modal>
+
     <header>
       <img src="@/assets/img/profile-picture.jpeg" alt="Profile picture" />
       <div>
@@ -38,14 +50,14 @@ const address = computed(() => props.patient.address)
     </main>
 
     <footer>
-      <button>Detalhes</button>
+      <button @click="() => (showModal = true)">Detalhes</button>
       <button>Editar</button>
     </footer>
   </article>
 </template>
 
 <style scoped>
-article {
+.card {
   padding: 1rem;
   background: var(--color-background-mute);
   border-radius: 1rem;
