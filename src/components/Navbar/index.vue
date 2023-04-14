@@ -3,22 +3,22 @@ import { RouterLink } from 'vue-router'
 </script>
 
 <template>
-  <aside>
+  <nav>
     <RouterLink :to="{ name: 'home' }"> OM30 - H34lth </RouterLink>
 
     <button class="log-out">Sair</button>
-  </aside>
+  </nav>
 </template>
 
 <style scoped>
-aside {
-  height: 100vh;
-  padding: 3rem 2rem;
+nav {
+  width: 100vw;
   background: var(--color-background-mute);
+  padding: 1rem 2rem;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: space-between;
+
 }
 
 a {
