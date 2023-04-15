@@ -31,6 +31,14 @@ const props = defineProps({
   rules: {
     type: String,
     default: ''
+  },
+  name: {
+    type: String,
+    default: ""
+  },
+  errors: {
+    type: [Object],
+    default: () => {}
   }
 })
 // Data
@@ -43,19 +51,21 @@ const content = computed({
   get: () => props.modelValue,
   set: (value) => emit('update:modelValue', value)
 })
+
 </script>
 
 <template>
   <div class="input-container">
     <label>{{ label }}</label>
     <Field
-      :name="label"
+      :name="name"
       :type="type"
       :placeholder="placeholder"
       :rules="rules"
       v-maska:[maskOption]
       v-model="content"
     />
+    <span>{{ errors[props.name] }}</span>
   </div>
 </template>
 
@@ -69,5 +79,7 @@ const content = computed({
 input {
   padding: 0.75rem 1rem;
   border: none;
+  background: var(--vt-c-black-mute);
 }
+
 </style>

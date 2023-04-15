@@ -3,8 +3,7 @@ import { Form } from 'vee-validate'
 </script>
 
 <template>
-  <Form v-slot="{ errors }">
-    
+  <Form v-slot="{ errors }">    
     <slot :errors="errors"></slot>
   </Form>
 </template>

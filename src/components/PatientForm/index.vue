@@ -47,63 +47,104 @@ function updatePatientAddress(address: AddressModel) {
         label="Nome completo"
         placeholder="Nome do paciente"
         v-model="currentPatient.fullName"
-        rules="required"
+        name="fullName"
+        rules="required|fullName"
+        :errors="errors"
       />
       <CustomInput
         label="Nome da mãe"
         placeholder="Nome da mãe do paciente"
         v-model="currentPatient.mothersName"
+        name="mothersName"
+        rules="required|fullName"
+        :errors="errors"
       />
       <CustomInput
         label="Data de nascimento"
         placeholder="Data de nascimento"
         type="date"
         v-model="currentPatient.birthDate"
+        name="birthDate"
+        rules="required"
+        :errors="errors"
       />
       <CustomInput
         label="CPF"
         placeholder="CPF"
         mask="###.###.###-##"
         v-model="currentPatient.registrationId"
-        rules="cpf"
+        name="registrationId"
+        rules="required|cpf"
+        :errors="errors"
       />
       <CustomInput
         label="Cartão nacional de saúde"
         placeholder="Número do CNS"
         mask="### #### #### ####"
         v-model="currentPatient.healthcareId"
-        rules="cns"
+        name="healthcareId"
+        rules="required|cns"
+        :errors="errors"
       />
       <CustomInput
         label="CEP"
         placeholder="CEP"
         mask="#####-###"
         v-model="currentPatient.address.zipCode"
+        name="zipCode"
         @input="handlePostalCode"
+        rules="required|cep"
+        :errors="errors"
       />
       <CustomInput
         label="Endereço"
         placeholder="Endereço"
         v-model="currentPatient.address.street"
+        name="street"
+        rules="required"
+        :errors="errors"
       />
       <CustomInput
         label="Número"
         placeholder="Número"
         type="number"
         v-model="currentPatient.address.number"
+        name="number"
+        rules="required"
+        :errors="errors"
       />
       <CustomInput
         label="Complemento"
         placeholder="Complemento"
         v-model="currentPatient.address.complement"
+        name="complement"
+        rules=""
+        :errors="errors"
       />
       <CustomInput
         label="Bairro"
         placeholder="Bairro"
         v-model="currentPatient.address.neighborhood"
+        name="neighborhood"
+        rules="required"
+        :errors="errors"
       />
-      <CustomInput label="Estado" placeholder="Estado" v-model="currentPatient.address.state" />
-      <CustomInput label="Cidade" placeholder="Cidade" v-model="currentPatient.address.city" />
+      <CustomInput
+        label="Estado"
+        placeholder="Estado"
+        v-model="currentPatient.address.state"
+        name="state"
+        rules="required"
+        :errors="errors"
+      />
+      <CustomInput
+        label="Cidade"
+        placeholder="Cidade"
+        v-model="currentPatient.address.city"
+        name="city"
+        rules="required"
+        :errors="errors"
+      />
     </div>
   </CustomForm>
 </template>
