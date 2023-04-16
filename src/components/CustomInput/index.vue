@@ -83,7 +83,7 @@ const content = computed({
       v-maska:[maskOption]
       v-model="content"
     />
-    <span v-if="errors">{{ errors[props.name] }}</span>
+    <span v-if="errors" class="error">{{ errors[props.name] }}</span>
   </div>
 </template>
 
@@ -107,5 +107,14 @@ input {
   padding: 0.75rem 1rem;
   border: none;
   background: var(--vt-c-black-mute);
+  color: var(--vt-c-text-dark-2);
+  font-size: 1rem;
+  color-scheme: dark;
+}
+
+.error {
+  min-height: 1.5rem;
+  font-size: 0.75rem;
+  color: hsla(160, 100%, 37%, 1);
 }
 </style>

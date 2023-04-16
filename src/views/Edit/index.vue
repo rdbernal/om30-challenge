@@ -47,7 +47,12 @@ function handleSubmit() {
   padding: 0 1rem;
   display: flex;
   flex-direction: column;
-  gap: 3rem;
+  gap: 2rem;
+}
+
+header > h1 {
+  font-size: 1.3rem;
+  font-weight: 700;
 }
 
 .actions {

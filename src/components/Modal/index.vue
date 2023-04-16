@@ -54,19 +54,24 @@ function closeModal() {
 
 .modal {
   min-width: 300px;
-  padding: 1rem;
+  padding: 2rem;
   border-radius: 0.5rem;
   background: var(--vt-c-black-mute);
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 2rem;
+}
+
+header {
+  font-size: 1.3rem;
+  font-weight: 700;
 }
 
 .close-button {
   position: absolute;
-  right: 0;
-  top: 0;
+  right: -1rem;
+  top: -1rem;
   background: none;
   border: none;
   outline: none;

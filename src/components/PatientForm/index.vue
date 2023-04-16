@@ -166,6 +166,6 @@ function updatePatientAddress(address: AddressModel) {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   column-gap: 2rem;
-  row-gap: 2rem;
+  row-gap: 0.75rem;
 }
 </style>
