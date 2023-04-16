@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { ref } from "vue";
 // Components
 import CustomInput from '@/components/CustomInput/index.vue'
 import PatientCard from '@/components/PatientCard/index.vue'
@@ -62,13 +63,16 @@ const patients = [
     new AddressModel('19625466', 'Rua Mendonça', '578', 'Bairro Campolim', '', 'SP', 'Campinas')
   )
 ]
+
+// Data
+const searchValue = ref("");
 </script>
 
 <template>
   <section class="content">
     <main>
       <div class="filter">
-        <CustomInput label="Filtrar" placeholder="Digite para buscar" />
+        <CustomInput label="Filtrar" placeholder="Digite para buscar" v-model="searchValue"/>
       </div>
 
       <div class="new-patient">

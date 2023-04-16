@@ -6,6 +6,10 @@ import PatientForm from "@/components/PatientForm/index.vue";
 import PatientModel from "@/models/Patient";
 // Data
 const patient = reactive(new PatientModel());
+// Methods
+function handleSubmit() {
+  console.log(patient);
+}
 </script>
 
 <template>
@@ -15,12 +19,12 @@ const patient = reactive(new PatientModel());
     </header>
 
     <main>
-      <PatientForm :patient="patient" />
+      <PatientForm :patient="patient" v-slot="{isValid}">
+          <div class="actions">
+            <button class="save-button" type="button" :disabled="!isValid" @click="handleSubmit">Salvar</button>
+          </div>
+      </PatientForm>
     </main>
-
-    <footer>
-      <button>Salvar</button>
-    </footer>
   </section>
 </template>
 
@@ -33,15 +37,25 @@ const patient = reactive(new PatientModel());
   gap: 3rem;
 }
 
-footer {
+.actions {
   display: flex;
+  gap: 2rem;
+  align-items: center;
   justify-content: center;
 }
 
-footer > button {
-  padding: 1rem;
+.actions > button {
   width: 20%;
+}
+
+.save-button {
+  padding: 1rem 0;
   background: hsla(160, 100%, 37%, 1);
   color: #000000;
+}
+
+.save-button:disabled {
+  filter: grayscale(1);
+  cursor: default;
 }
 </style>

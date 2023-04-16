@@ -1,27 +1,33 @@
 <script setup lang="ts">
-import { reactive } from "vue";
+import { reactive } from 'vue'
 // Components
-import PatientForm from "@/components/PatientForm/index.vue";
+import PatientForm from '@/components/PatientForm/index.vue'
 // Models
-import PatientModel from "@/models/Patient";
+import PatientModel from '@/models/Patient'
 // Data
-const patient = reactive(new PatientModel());
+const patient = reactive(new PatientModel())
+// Methods
+function handleSubmit() {
+  console.log(patient)
+}
 </script>
 
 <template>
   <section class="content">
-    <header>  
+    <header>
       <h1>Editar paciente</h1>
     </header>
 
     <main>
-      <PatientForm :patient="patient" />
+      <PatientForm :patient="patient" v-slot="{ isValid }">
+        <div class="actions">
+          <button class="delete-button" type="button">Excluir</button>
+          <button class="save-button" type="button" :disabled="!isValid" @click="handleSubmit">
+            Salvar alterações
+          </button>
+        </div>
+      </PatientForm>
     </main>
-
-    <footer>
-      <button class="delete-button">Excluir</button>
-      <button class="save-button">Salvar</button>
-    </footer>
   </section>
 </template>
 
@@ -34,23 +40,31 @@ const patient = reactive(new PatientModel());
   gap: 3rem;
 }
 
-footer {
+.actions {
   display: flex;
-  justify-content: center;
   gap: 2rem;
+  align-items: center;
+  justify-content: center;
 }
 
-footer > .delete-button {
-  padding: 1rem;
+.actions > button {
   width: 20%;
+}
+
+.delete-button {
+  padding: 1rem 0;
   background: #e1648b;
   color: #000000;
 }
 
-footer > .save-button {
-  padding: 1rem;
-  width: 20%;
+.save-button {
+  padding: 1rem 0;
   background: hsla(160, 100%, 37%, 1);
   color: #000000;
+}
+
+.save-button:disabled {
+  filter: grayscale(1);
+  cursor: default;
 }
 </style>

@@ -39,9 +39,7 @@ function updatePatientAddress(address: AddressModel) {
 </script>
 
 <template>
-  <CustomForm v-slot="{ errors }">
-    {{ errors }}
-
+  <CustomForm v-slot="{ errors, isValid }">
     <div class="fields">
       <CustomInput
         label="Nome completo"
@@ -146,6 +144,10 @@ function updatePatientAddress(address: AddressModel) {
         :errors="errors"
       />
     </div>
+
+    <div>
+      <slot as="" :isValid="isValid"></slot>
+    </div>
   </CustomForm>
 </template>
 
@@ -156,4 +158,11 @@ function updatePatientAddress(address: AddressModel) {
   column-gap: 2rem;
   row-gap: 2rem;
 }
+
+/* .actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+} */
+
 </style>

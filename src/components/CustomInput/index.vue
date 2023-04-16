@@ -19,7 +19,8 @@ const props = defineProps({
     default: 'text'
   },
   mask: {
-    type: String
+    type: String,
+    defailt: ""
   },
   required: {
     type: Boolean,
@@ -30,7 +31,7 @@ const props = defineProps({
   },
   rules: {
     type: String,
-    default: ''
+    default: ""
   },
   name: {
     type: String,
@@ -65,7 +66,7 @@ const content = computed({
       v-maska:[maskOption]
       v-model="content"
     />
-    <span>{{ errors[props.name] }}</span>
+    <span v-if="errors">{{ errors[props.name] }}</span>
   </div>
 </template>
 
