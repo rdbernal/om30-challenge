@@ -1,12 +1,17 @@
 <script setup lang="ts">
-import { reactive } from 'vue'
+import { ref, reactive } from 'vue'
 // Components
 import PatientForm from '@/components/PatientForm/index.vue'
 // Models
 import PatientModel from '@/models/Patient'
 // Data
 const patient = reactive(new PatientModel())
+const startDelete = ref(false)
 // Methods
+function handleDelete() {
+  console.log("Deletar paciente");
+}
+
 function handleSubmit() {
   console.log(patient)
 }
@@ -21,7 +26,12 @@ function handleSubmit() {
     <main>
       <PatientForm :patient="patient" v-slot="{ isValid }">
         <div class="actions">
-          <button class="delete-button" type="button">Excluir</button>
+          <button v-if="startDelete" class="confirm-delete-button" type="button" @click="handleDelete">
+            Confirmar exclusão
+          </button>
+          <button v-else class="delete-button" type="button" @click="() => (startDelete = true)">
+            Excluir
+          </button>
           <button class="save-button" type="button" :disabled="!isValid" @click="handleSubmit">
             Salvar alterações
           </button>
@@ -55,6 +65,13 @@ function handleSubmit() {
   padding: 1rem 0;
   background: #e1648b;
   color: #000000;
+}
+
+.confirm-delete-button {
+  padding: 1rem 0;
+  background: none;
+  border: 1px solid #e1648b;
+  color: #e1648b;
 }
 
 .save-button {

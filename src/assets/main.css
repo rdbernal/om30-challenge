@@ -21,6 +21,7 @@ button {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
+  font-weight: 700;
 }
 
 @media (min-width: 1024px) {
