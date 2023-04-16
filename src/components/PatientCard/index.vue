@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { computed, ref } from 'vue'
+import { DateTime } from "luxon";
 // Components
 import Modal from '@/components/Modal/index.vue'
 import PatientDetails from '@/components/PatientDetails/index.vue'
@@ -18,15 +19,9 @@ const showModal = ref(false)
 const address = computed(() => props.patient.address);
 
 const birthDate = computed(() => {
-  // const date = props.patient.birthDate;
-
-  // const year = date.getFullYear();
-  // const month = String(date.getMonth() + 1).padStart(2, "0");
-  // const day = String(date.getDate()).padStart(2, "0");
-
-  // return `${day}/${month}/${year}`;
-
-  return "aousihduiashd";
+  const date = new Date(props.patient.birthDate);
+  const formattedDate = DateTime.fromJSDate(date).toFormat("dd/MM/yyyy");
+  return formattedDate;
 })
 </script>
 

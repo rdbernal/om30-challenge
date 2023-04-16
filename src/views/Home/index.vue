@@ -14,7 +14,7 @@ const patients = [
     '1',
     'José Aparecido',
     'Maria Lourdes',
-    new Date(324542090),
+    324542090,
     '12312312312',
     '123123123123123',
     new AddressModel('18043200', 'Rua Um', '201', 'Bairro Dois', 'Apto 14', 'SP', 'Sorocaba')
@@ -23,7 +23,7 @@ const patients = [
     '2',
     'Mauro Almeida',
     'Rose Camargo',
-    new Date(516868490),
+    516868490,
     '12312312312',
     '123123123123123',
     new AddressModel(
@@ -40,7 +40,7 @@ const patients = [
     '3',
     'Felipe Augusto',
     'Cláudia Maria',
-    new Date(706257290),
+    706257290,
     '12312312312',
     '123123123123123',
     new AddressModel(
@@ -57,7 +57,7 @@ const patients = [
     '4',
     'Fernanda Ceribelli',
     'Glória Estevez',
-    new Date(832487690),
+    832487690,
     '12312312312',
     '123123123123123',
     new AddressModel('19625466', 'Rua Mendonça', '578', 'Bairro Campolim', '', 'SP', 'Campinas')
