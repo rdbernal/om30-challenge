@@ -6,7 +6,7 @@ export default class Patient {
     public id: string = "",
     public fullName: string = "",
     public mothersName: string = "",
-    public birthDate: Date = new Date(),
+    public birthDate: number = 0,
     public registrationId: string = "",
     public healthcareId: string = "",
     public address: Address = new Address(),

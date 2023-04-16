@@ -47,6 +47,7 @@ function updatePatientAddress(address: AddressModel) {
         v-model="currentPatient.fullName"
         name="fullName"
         rules="required|fullName"
+        :required="true"
         :errors="errors"
       />
       <CustomInput
@@ -55,6 +56,7 @@ function updatePatientAddress(address: AddressModel) {
         v-model="currentPatient.mothersName"
         name="mothersName"
         rules="required|fullName"
+        :required="true"
         :errors="errors"
       />
       <CustomInput
@@ -64,6 +66,7 @@ function updatePatientAddress(address: AddressModel) {
         v-model="currentPatient.birthDate"
         name="birthDate"
         rules="required"
+        :required="true"
         :errors="errors"
       />
       <CustomInput
@@ -73,6 +76,7 @@ function updatePatientAddress(address: AddressModel) {
         v-model="currentPatient.registrationId"
         name="registrationId"
         rules="required|cpf"
+        :required="true"
         :errors="errors"
       />
       <CustomInput
@@ -82,6 +86,7 @@ function updatePatientAddress(address: AddressModel) {
         v-model="currentPatient.healthcareId"
         name="healthcareId"
         rules="required|cns"
+        :required="true"
         :errors="errors"
       />
       <CustomInput
@@ -92,6 +97,7 @@ function updatePatientAddress(address: AddressModel) {
         name="zipCode"
         @input="handlePostalCode"
         rules="required|cep"
+        :required="true"
         :errors="errors"
       />
       <CustomInput
@@ -100,6 +106,7 @@ function updatePatientAddress(address: AddressModel) {
         v-model="currentPatient.address.street"
         name="street"
         rules="required"
+        :required="true"
         :errors="errors"
       />
       <CustomInput
@@ -109,6 +116,7 @@ function updatePatientAddress(address: AddressModel) {
         v-model="currentPatient.address.number"
         name="number"
         rules="required"
+        :required="true"
         :errors="errors"
       />
       <CustomInput
@@ -116,7 +124,6 @@ function updatePatientAddress(address: AddressModel) {
         placeholder="Complemento"
         v-model="currentPatient.address.complement"
         name="complement"
-        rules=""
         :errors="errors"
       />
       <CustomInput
@@ -125,6 +132,7 @@ function updatePatientAddress(address: AddressModel) {
         v-model="currentPatient.address.neighborhood"
         name="neighborhood"
         rules="required"
+        :required="true"
         :errors="errors"
       />
       <CustomInput
@@ -133,6 +141,7 @@ function updatePatientAddress(address: AddressModel) {
         v-model="currentPatient.address.state"
         name="state"
         rules="required"
+        :required="true"
         :errors="errors"
       />
       <CustomInput
@@ -141,12 +150,13 @@ function updatePatientAddress(address: AddressModel) {
         v-model="currentPatient.address.city"
         name="city"
         rules="required"
+        :required="true"
         :errors="errors"
       />
     </div>
 
     <div>
-      <slot as="" :isValid="isValid"></slot>
+      <slot :isValid="isValid"></slot>
     </div>
   </CustomForm>
 </template>
@@ -158,11 +168,4 @@ function updatePatientAddress(address: AddressModel) {
   column-gap: 2rem;
   row-gap: 2rem;
 }
-
-/* .actions {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-} */
-
 </style>

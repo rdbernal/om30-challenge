@@ -14,6 +14,7 @@
   "dependencies": {
     "@vee-validate/i18n": "^4.8.3",
     "@vee-validate/rules": "^4.8.4",
+    "luxon": "^3.3.0",
     "maska": "^2.1.8",
     "vee-validate": "^4.8.4",
     "vue": "^3.2.47",
@@ -22,6 +23,7 @@
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.2.0",
+    "@types/luxon": "^3.3.0",
     "@types/node": "^18.14.2",
     "@vitejs/plugin-vue": "^4.0.0",
     "@vue/eslint-config-prettier": "^7.1.0",

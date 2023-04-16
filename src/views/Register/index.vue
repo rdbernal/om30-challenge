@@ -8,7 +8,7 @@ import PatientModel from "@/models/Patient";
 const patient = reactive(new PatientModel());
 // Methods
 function handleSubmit() {
-  console.log(patient);
+  console.log({...patient});
 }
 </script>
 
@@ -17,6 +17,8 @@ function handleSubmit() {
     <header>  
       <h1>Novo Paciente</h1>
     </header>
+
+    {{ patient }}
 
     <main>
       <PatientForm :patient="patient" v-slot="{isValid}">

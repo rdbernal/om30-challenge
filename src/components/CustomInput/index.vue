@@ -2,6 +2,7 @@
 import { reactive, computed } from 'vue'
 import { vMaska } from 'maska'
 import { Field } from 'vee-validate'
+import { DateTime } from 'luxon'
 // Events
 const emit = defineEmits(['update:modelValue'])
 // Props
@@ -20,22 +21,22 @@ const props = defineProps({
   },
   mask: {
     type: String,
-    defailt: ""
+    defailt: ''
   },
   required: {
     type: Boolean,
     default: false
   },
   modelValue: {
-    type: [String, Date, Number]
+    type: [String, Object, Number]
   },
   rules: {
     type: String,
-    default: ""
+    default: ''
   },
   name: {
     type: String,
-    default: ""
+    default: ''
   },
   errors: {
     type: [Object],
@@ -49,15 +50,31 @@ const maskOption = reactive({
 })
 // Computeds
 const content = computed({
-  get: () => props.modelValue,
-  set: (value) => emit('update:modelValue', value)
+  get: () => {
+    if (props.type === 'date') {
+      const date = DateTime.fromMillis(Number(props.modelValue));
+      const formattedDate = date.toISODate();
+      return props.modelValue ? formattedDate : null;
+    }
+    return props.modelValue
+  },
+  set: (value) => {
+    if (props.type === 'date') {
+      const date = DateTime.fromISO(String(value)).toMillis();
+      emit('update:modelValue', date);
+    } else {
+      emit('update:modelValue', value)
+    }
+  }
 })
-
 </script>
 
 <template>
   <div class="input-container">
-    <label>{{ label }}</label>
+    <div class="label-container">
+      <label>{{ label }}</label>
+      <span v-if="required">*</span>
+    </div>
     <Field
       :name="name"
       :type="type"
@@ -77,10 +94,18 @@ const content = computed({
   gap: 0.5rem;
 }
 
+.label-container {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.label-container > span {
+  color: hsla(160, 100%, 37%, 1);
+}
+
 input {
   padding: 0.75rem 1rem;
   border: none;
   background: var(--vt-c-black-mute);
 }
-
 </style>
