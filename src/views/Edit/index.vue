@@ -1,20 +1,81 @@
 <script setup lang="ts">
-import { ref, reactive } from 'vue'
+import { ref, reactive, onMounted } from 'vue';
+import { useRoute } from 'vue-router';
+import router from '@/router';
+
 // Components
-import PatientForm from '@/components/PatientForm/index.vue'
+import PatientForm from '@/components/PatientForm/index.vue';
+import Loading from '@/components/Loading/index.vue'
+
 // Models
-import PatientModel from '@/models/Patient'
+import PatientModel from '@/models/Patient';
+import RequestProgressModel from '@/models/RequestProgress';
+
+// Services
+import PatientService from '@/services/PatientService';
+
+// Services instances
+const patientService = new PatientService();
+
 // Data
-const patient = reactive(new PatientModel())
-const startDelete = ref(false)
+const patient = ref(new PatientModel());
+const startDelete = ref(false);
+const showProgress = reactive(new RequestProgressModel());
+const updateProgress = reactive(new RequestProgressModel());
+const destroyProgress = reactive(new RequestProgressModel());
+
 // Methods
 function handleDelete() {
-  console.log("Deletar paciente");
+  destroyPatient(patient.value.id);
 }
 
 function handleSubmit() {
-  console.log(patient)
+  updatePatient();
 }
+
+async function destroyPatient(id: string) {
+  try {
+    destroyProgress.startLoad();
+
+    await patientService.delete(id);
+
+    destroyProgress.stopWithSuccess();
+    router.push({ name: 'home' });
+  } catch {
+    destroyProgress.stopWithError();
+  }
+}
+
+async function updatePatient() {
+  try {
+    updateProgress.startLoad();
+
+    await patientService.update(patient.value);
+
+    updateProgress.stopWithSuccess();
+    router.push({ name: 'home' });
+  } catch {
+    updateProgress.stopWithError();
+  }
+}
+
+async function loadPatient(id: string) {
+  try {
+    showProgress.startLoad();
+
+    const response = await patientService.show(id);
+    patient.value = PatientModel.showSerializer(response);
+
+    showProgress.stopWithSuccess();
+  } catch {
+    showProgress.stopWithError();
+  }
+}
+
+onMounted(() => {
+  const { id } = useRoute().params;
+  loadPatient(String(id));
+})
 </script>
 
 <template>
@@ -26,13 +87,36 @@ function handleSubmit() {
     <main>
       <PatientForm :patient="patient" v-slot="{ isValid }">
         <div class="actions">
-          <button v-if="startDelete" class="confirm-delete-button" type="button" @click="handleDelete">
+          <button
+            v-if="destroyProgress.loading"
+            class="confirm-delete-button"
+            type="button"
+            disabled
+          >
+            <Loading />
+          </button>
+          <button
+            v-else-if="startDelete"
+            class="confirm-delete-button"
+            type="button"
+            @click="handleDelete"
+          >
             Confirmar exclusão
           </button>
           <button v-else class="delete-button" type="button" @click="() => (startDelete = true)">
             Excluir
           </button>
-          <button class="save-button" type="button" :disabled="!isValid" @click="handleSubmit">
+
+          <button v-if="updateProgress.loading" class="save-button" type="button" disabled>
+            <Loading />
+          </button>
+          <button
+            v-else
+            class="save-button"
+            type="button"
+            :disabled="!isValid"
+            @click="handleSubmit"
+          >
             Salvar alterações
           </button>
         </div>
@@ -69,6 +153,7 @@ header > h1 {
 .delete-button {
   padding: 1rem 0;
   background: #e1648b;
+  border: 1px solid #e1648b;
   color: #000000;
 }
 
@@ -79,9 +164,15 @@ header > h1 {
   color: #e1648b;
 }
 
+.confirm-delete-button:disabled {
+  filter: grayscale(1);
+  cursor: default;
+}
+
 .save-button {
   padding: 1rem 0;
-  background: hsla(160, 100%, 37%, 1);
+  background: #00bd7e;
+  border: 1px solid #00bd7e;
   color: #000000;
 }
 

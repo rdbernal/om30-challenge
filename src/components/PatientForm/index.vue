@@ -1,15 +1,19 @@
 <script lang="ts" setup>
-import { toRef } from 'vue'
+import { toRef } from 'vue';
 // Components
-import CustomForm from '@/components/CustomForm/index.vue'
-import CustomInput from '@/components/CustomInput/index.vue'
+import CustomForm from '@/components/CustomForm/index.vue';
+import CustomInput from '@/components/CustomInput/index.vue';
+
 // Models
-import PatientModel from '@/models/Patient'
-import AddressModel from '@/models/Address'
+import PatientModel from '@/models/Patient';
+import AddressModel from '@/models/Address';
+
 // Services
-import ViaCepService from '@/services/ViaCep'
+import ViaCepService from '@/services/ViaCepService';
+
 // Services instances
-const viaCepService = new ViaCepService()
+const viaCepService = new ViaCepService();
+
 // Props
 const props = defineProps({
   patient: {
@@ -17,24 +21,26 @@ const props = defineProps({
     required: true
   }
 })
+
 // Data
-const currentPatient = toRef(props, 'patient')
+const currentPatient = toRef(props, 'patient');
+
 // Methods
 function handlePostalCode() {
-  const zipCode = currentPatient.value.address.zipCode.replace('-', '')
+  const zipCode = currentPatient.value.address.zipCode.replace('-', '');
   if (zipCode.length === 8) {
-    loadAddress(zipCode)
+    loadAddress(zipCode);
   }
 }
 
 async function loadAddress(zipCode: string) {
-  const response = await viaCepService.getAddress(zipCode)
-  const address = AddressModel.serializeViaCepResponse(response)
-  updatePatientAddress(address)
+  const response = await viaCepService.getAddress(zipCode);
+  const address = AddressModel.serializeViaCepResponse(response);
+  updatePatientAddress(address);
 }
 
 function updatePatientAddress(address: AddressModel) {
-  currentPatient.value.address = { ...address, zipCode: currentPatient.value.address.zipCode }
+  currentPatient.value.address = { ...address, zipCode: currentPatient.value.address.zipCode };
 }
 </script>
 

@@ -1,19 +1,20 @@
 <script lang="ts" setup>
-// import { defineEmits } from 'vue'
 // Icons
-import Close from 'vue-material-design-icons/Close.vue'
+import Close from 'vue-material-design-icons/Close.vue';
+
 // Events
-const emit = defineEmits(['close'])
+const emit = defineEmits(['close']);
+
 //Methods
 function handleBackgroundClick(event: Event) {
-  const { target, currentTarget } = event
+  const { target, currentTarget } = event;
   if (target === currentTarget) {
-    closeModal()
+    closeModal();
   }
 }
 
 function closeModal() {
-  emit('close')
+  emit('close');
 }
 </script>
 

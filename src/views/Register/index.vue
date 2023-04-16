@@ -1,28 +1,66 @@
 <script setup lang="ts">
-import { reactive } from "vue";
+import { reactive } from 'vue'
+import router from '@/router'
+
 // Components
-import PatientForm from "@/components/PatientForm/index.vue";
+import PatientForm from '@/components/PatientForm/index.vue'
+import Loading from '@/components/Loading/index.vue'
+
 // Models
-import PatientModel from "@/models/Patient";
+import PatientModel from '@/models/Patient'
+import RequestProgressModel from '@/models/RequestProgress'
+
+// Services
+import PatientService from '@/services/PatientService'
+
+// Services instances
+const patientService = new PatientService()
+
 // Data
-const patient = reactive(new PatientModel());
+const patient = reactive(new PatientModel())
+const storeProgress = reactive(new RequestProgressModel())
+
 // Methods
 function handleSubmit() {
-  console.log({...patient});
+  storePatient()
+}
+
+async function storePatient() {
+  try {
+    storeProgress.startLoad()
+    await patientService.store({ ...patient })
+    storeProgress.stopWithSuccess()
+    setInterval(() => {
+      router.push({name: "home"});
+    }, 1000)
+  } catch {
+    storeProgress.stopWithError()
+  }
 }
 </script>
 
 <template>
   <section class="content">
-    <header>  
+    <header>
       <h1>Novo Paciente</h1>
     </header>
-    
+
     <main>
-      <PatientForm :patient="patient" v-slot="{isValid}">
-          <div class="actions">
-            <button class="save-button" type="button" :disabled="!isValid" @click="handleSubmit">Salvar</button>
-          </div>
+      <PatientForm :patient="patient" v-slot="{ isValid }">
+        <div class="actions">
+          <button v-if="storeProgress.loading" class="save-button" type="button" disabled>
+            <Loading />
+          </button>
+          <button
+            v-else
+            class="save-button"
+            type="button"
+            :disabled="!isValid"
+            @click="handleSubmit"
+          >
+            Salvar
+          </button>
+        </div>
       </PatientForm>
     </main>
   </section>
@@ -56,6 +94,7 @@ header > h1 {
 .save-button {
   padding: 1rem 0;
   background: hsla(160, 100%, 37%, 1);
+  border: 1px solid hsla(160, 100%, 37%, 1);
   color: #000000;
 }
 

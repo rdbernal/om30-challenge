@@ -1,11 +1,14 @@
 <script lang="ts" setup>
 import { computed, ref } from 'vue'
 import { DateTime } from "luxon";
+
 // Components
-import Modal from '@/components/Modal/index.vue'
-import PatientDetails from '@/components/PatientDetails/index.vue'
+import Modal from '@/components/Modal/index.vue';
+import PatientDetails from '@/components/PatientDetails/index.vue';
+
 // Models
-import PatientModel from '@/models/Patient'
+import PatientModel from '@/models/Patient';
+
 // Props
 const props = defineProps({
   patient: {
@@ -13,8 +16,10 @@ const props = defineProps({
     required: true
   }
 })
+
 // Data
-const showModal = ref(false)
+const showModal = ref(false);
+
 //Computeds
 const address = computed(() => props.patient.address);
 
@@ -58,7 +63,7 @@ const birthDate = computed(() => {
 
     <footer>
       <button class="detail-button" @click="() => (showModal = true)">Detalhes</button>
-      <RouterLink :to="{ name: 'edit' }">
+      <RouterLink :to="{ name: 'edit', params: {id: patient.id} }">
         <button class="edit-button">Editar</button>
       </RouterLink>
     </footer>

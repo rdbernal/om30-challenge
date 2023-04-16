@@ -1,0 +1,106 @@
+{
+  "patients": [
+    {
+      "id": 7,
+      "fullName": "Lilian Amiodala",
+      "mothersName": "Júlia Prestes",
+      "birthDate": -369349200000,
+      "registrationId": "729.873.048-70",
+      "healthcareId": "235 8777 3764 0000",
+      "address": {
+        "zipCode": "18060-200",
+        "street": "Rua Crispiniano Fontoura da Costa",
+        "number": "1875",
+        "neighborhood": "Vila Carvalho",
+        "complement": "",
+        "state": "SP",
+        "city": "Sorocaba"
+      }
+    },
+    {
+      "id": 9,
+      "fullName": "Raul Jacob",
+      "mothersName": "Márcia Beatriz",
+      "birthDate": 1026961200000,
+      "registrationId": "418.201.978-40",
+      "healthcareId": "152 3449 4250 0008",
+      "address": {
+        "zipCode": "18052-200",
+        "street": "Rua Terêncio Costa Dias",
+        "number": "15",
+        "neighborhood": "Jardim Bertanha",
+        "complement": "",
+        "state": "SP",
+        "city": "Sorocaba"
+      }
+    },
+    {
+      "id": 10,
+      "fullName": "Maria Araras",
+      "mothersName": "Teresa Almeida",
+      "birthDate": 979783200000,
+      "registrationId": "478.413.208-25",
+      "healthcareId": "235 9460 6647 0008",
+      "address": {
+        "zipCode": "18051-200",
+        "street": "Rua Jayme Theodoro de Moraes",
+        "number": "154",
+        "neighborhood": "Central Parque Sorocaba",
+        "complement": "",
+        "state": "SP",
+        "city": "Sorocaba"
+      }
+    },
+    {
+      "id": 11,
+      "fullName": "Jânio Quadros",
+      "mothersName": "Maria Pimentel",
+      "birthDate": 956026800000,
+      "registrationId": "359.209.688-50",
+      "healthcareId": "898 8829 2075 0008",
+      "address": {
+        "zipCode": "18052-300",
+        "street": "Rua Luiz Gonzaga de Camargo Fleury",
+        "number": "1",
+        "neighborhood": "Jardim Capitão",
+        "complement": "",
+        "state": "SP",
+        "city": "Sorocaba"
+      }
+    },
+    {
+      "id": 12,
+      "fullName": "Tico Santa Cruz",
+      "mothersName": "Marina Amaral",
+      "birthDate": 986698800000,
+      "registrationId": "359.605.408-78",
+      "healthcareId": "724 6029 5692 0002",
+      "address": {
+        "zipCode": "18053-400",
+        "street": "Estrada do Ipatinga",
+        "number": "1",
+        "neighborhood": "Vivendas do Lago",
+        "complement": "",
+        "state": "SP",
+        "city": "Sorocaba"
+      }
+    },
+    {
+      "id": 13,
+      "fullName": "Pimentel Amaro",
+      "mothersName": "Raissa Menezes",
+      "birthDate": 949370400000,
+      "registrationId": "193.586.678-85",
+      "healthcareId": "845 5641 4285 0004",
+      "address": {
+        "zipCode": "18051-200",
+        "street": "Rua Jayme Theodoro de Moraes",
+        "number": "56",
+        "neighborhood": "Central Parque Sorocaba",
+        "complement": "",
+        "state": "SP",
+        "city": "Sorocaba"
+      }
+    }
+  ]
+}

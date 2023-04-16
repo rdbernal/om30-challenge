@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { Form } from 'vee-validate'
+import { Form } from 'vee-validate';
 </script>
 
 <template>

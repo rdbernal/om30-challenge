@@ -1,78 +1,55 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, reactive, onMounted } from 'vue'
+import type { Ref } from 'vue'
+
 // Components
 import CustomInput from '@/components/CustomInput/index.vue'
 import PatientCard from '@/components/PatientCard/index.vue'
+import Loading from '@/components/Loading/index.vue'
+
 // Icons
 import Plus from 'vue-material-design-icons/Plus.vue'
+
 // Models
 import PatientModel from '@/models/Patient'
-import AddressModel from '@/models/Address'
+import RequestProgressModel from '@/models/RequestProgress'
 
-const patients = [
-  new PatientModel(
-    '1',
-    'José Aparecido',
-    'Maria Lourdes',
-    324542090,
-    '12312312312',
-    '123123123123123',
-    new AddressModel('18043200', 'Rua Um', '201', 'Bairro Dois', 'Apto 14', 'SP', 'Sorocaba')
-  ),
-  new PatientModel(
-    '2',
-    'Mauro Almeida',
-    'Rose Camargo',
-    516868490,
-    '12312312312',
-    '123123123123123',
-    new AddressModel(
-      '17634200',
-      'Rua Quinze',
-      '5',
-      'Bairro Sete',
-      'Quadra 18',
-      'MG',
-      'Belo Horizonte'
-    )
-  ),
-  new PatientModel(
-    '3',
-    'Felipe Augusto',
-    'Cláudia Maria',
-    706257290,
-    '12312312312',
-    '123123123123123',
-    new AddressModel(
-      '15672300',
-      'Rua Capitão',
-      '490',
-      'Bairro Portal',
-      'Apto 13',
-      'SP',
-      'Ribeirão Preto'
-    )
-  ),
-  new PatientModel(
-    '4',
-    'Fernanda Ceribelli',
-    'Glória Estevez',
-    832487690,
-    '12312312312',
-    '123123123123123',
-    new AddressModel('19625466', 'Rua Mendonça', '578', 'Bairro Campolim', '', 'SP', 'Campinas')
-  )
-]
+// Services
+import PatientService from '@/services/PatientService'
+
+// Services insntances
+const patientService = new PatientService()
 
 // Data
-const searchValue = ref("");
+const searchValue = ref('')
+const indexProgress = reactive(new RequestProgressModel())
+const patients: Ref<PatientModel[]> = ref([])
+
+// Methods
+async function loadPatients() {
+  try {
+    indexProgress.startLoad()
+
+    const response = await patientService.index()
+    patients.value = PatientModel.listSerializer(response)
+
+    indexProgress.stopWithSuccess()
+  } catch {
+    indexProgress.stopWithError()
+  }  
+}
+
+// Life cycle
+onMounted(() => {
+  loadPatients()
+})
 </script>
 
 <template>
   <section class="content">
     <main>
       <div class="filter">
-        <CustomInput label="Filtrar" placeholder="Digite para buscar" v-model="searchValue"/>
+        <CustomInput label="Filtrar" placeholder="Digite para buscar" v-model="searchValue" />
       </div>
 
       <div class="new-patient">
@@ -84,8 +61,14 @@ const searchValue = ref("");
         </RouterLink>
       </div>
 
-      <div class="patients">
-        <PatientCard v-for="patient in patients" :key="patient.id" :patient="patient" />
+      <div>
+        <div v-if="indexProgress.loading" class="loading">
+          <Loading />
+        </div>
+
+        <div v-else class="patients-list">
+          <PatientCard v-for="patient in patients" :key="patient.id" :patient="patient" />
+        </div>
       </div>
     </main>
   </section>
@@ -102,9 +85,17 @@ main {
   flex-direction: column;
   gap: 2rem;
 }
-.patients {
+
+.loading {
+  height: 331px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.patients-list {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   column-gap: 1rem;
   row-gap: 1rem;
 }

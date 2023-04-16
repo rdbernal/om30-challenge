@@ -1,7 +1,9 @@
 <script lang="ts" setup>
-import { computed } from 'vue'
+import { computed } from 'vue';
+
 // Models
-import PatientModel from '@/models/Patient'
+import PatientModel from '@/models/Patient';
+
 // Props
 const props = defineProps({
   patient: {
@@ -10,7 +12,7 @@ const props = defineProps({
   }
 })
 // Computeds
-const address = computed(() => props.patient.address)
+const address = computed(() => props.patient.address);
 </script>
 
 <template>

@@ -1,10 +1,12 @@
 <script lang="ts" setup>
-import { reactive, computed } from 'vue'
-import { vMaska } from 'maska'
-import { Field } from 'vee-validate'
-import { DateTime } from 'luxon'
+import { reactive, computed } from 'vue';
+import { vMaska } from 'maska';
+import { Field } from 'vee-validate';
+import { DateTime } from 'luxon';
+
 // Events
-const emit = defineEmits(['update:modelValue'])
+const emit = defineEmits(['update:modelValue']);
+
 // Props
 const props = defineProps({
   label: {
@@ -43,11 +45,13 @@ const props = defineProps({
     default: () => {}
   }
 })
+
 // Data
 const maskOption = reactive({
   mask: props.mask,
   eager: true
 })
+
 // Computeds
 const content = computed({
   get: () => {
@@ -56,14 +60,14 @@ const content = computed({
       const formattedDate = date.toISODate();
       return props.modelValue ? formattedDate : null;
     }
-    return props.modelValue
+    return props.modelValue;
   },
   set: (value) => {
     if (props.type === 'date') {
       const date = DateTime.fromISO(String(value)).toMillis();
       emit('update:modelValue', date);
     } else {
-      emit('update:modelValue', value)
+      emit('update:modelValue', value);
     }
   }
 })
