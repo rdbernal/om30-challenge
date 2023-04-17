@@ -17,7 +17,7 @@ Sistema de cadastro de pacientes com listagem, adição, edição, visualizaçã
 1. Clone do repositório
 2. 
     ```
-    git clone <nome_do_repositorio>
+    git clone <url_do_repositorio>
     ```
 
 3. Instalar dependências
