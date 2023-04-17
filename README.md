@@ -15,31 +15,31 @@ Sistema de cadastro de pacientes com listagem, adição, edição, visualizaçã
 ## 📂 Rodando o projeto
 
 1. Clone do repositório
-2. 
+ 
     ```
     git clone <url_do_repositorio>
     ```
 
 3. Instalar dependências
-4. 
+ 
     ```
     npm install
     ```
 
 5. Rodar projeto
-6. 
+ 
     ``` 
     npm run dev
     ```
 
 7. Rodar JSON server
-8. 
+ 
     ```
     npm run db
     ```
 
 9. Acessar no navegador
-10. 
+ 
    ```
    http://localhost:5173/
    ```
