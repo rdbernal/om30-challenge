@@ -17,10 +17,10 @@ import RequestProgressModel from "@/models/RequestProgress";
 // Services
 import PatientService from "@/services/PatientService";
 
-// Services insntances
+// Services instances
 const patientService = new PatientService();
 
-// Data
+// Local states
 const searchValue = ref("");
 const indexProgress = reactive(new RequestProgressModel());
 const patients: Ref<PatientModel[]> = ref([]);

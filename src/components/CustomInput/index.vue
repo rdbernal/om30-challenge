@@ -46,7 +46,7 @@ const props = defineProps({
   }
 });
 
-// Data
+// Local states
 const maskOption = reactive({
   mask: props.mask,
   eager: true

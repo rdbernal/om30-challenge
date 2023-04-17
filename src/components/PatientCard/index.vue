@@ -17,7 +17,7 @@ const props = defineProps({
   }
 });
 
-// Data
+// Local states
 const showModal = ref(false);
 
 //Computeds

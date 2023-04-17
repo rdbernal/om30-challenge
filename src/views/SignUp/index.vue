@@ -21,7 +21,7 @@ import SignUpService from "@/services/SignUpService";
 // Services instances
 const signUpService = new SignUpService();
 
-// Data
+// Local states
 const signUp = reactive(new SignUpModel());
 const signUpProgress = reactive(new RequestProgressModel());
 

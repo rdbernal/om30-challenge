@@ -16,7 +16,7 @@ import PatientService from "@/services/PatientService";
 // Services instances
 const patientService = new PatientService();
 
-// Data
+// Local states
 const patient = reactive(new PatientModel());
 const storeProgress = reactive(new RequestProgressModel());
 

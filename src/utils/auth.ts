@@ -1,13 +1,13 @@
 export function keepAccessToken(token: string): void {
-  localStorage.setItem("Bearer", JSON.stringify(token));
+  localStorage.setItem("AccessToken", JSON.stringify(token));
 }
 
 export function clearAccessToken(): void {
-  localStorage.removeItem("Bearer");
+  localStorage.removeItem("AccessToken");
 }
 
 export function checkForToken(): boolean {
-  const token = localStorage.getItem("Bearer");
+  const token = localStorage.getItem("AccessToken");
 
   return Boolean(token);
 }

@@ -23,7 +23,7 @@ const props = defineProps({
   }
 });
 
-// Data
+// Local states
 const currentPatient = toRef(props, "patient");
 
 // Methods
