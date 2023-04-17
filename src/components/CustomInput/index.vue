@@ -1,11 +1,11 @@
 <script lang="ts" setup>
-import { reactive, computed } from 'vue';
-import { vMaska } from 'maska';
-import { Field } from 'vee-validate';
-import { DateTime } from 'luxon';
+import { reactive, computed } from "vue";
+import { vMaska } from "maska";
+import { Field } from "vee-validate";
+import { DateTime } from "luxon";
 
 // Events
-const emit = defineEmits(['update:modelValue']);
+const emit = defineEmits(["update:modelValue"]);
 
 // Props
 const props = defineProps({
@@ -15,15 +15,15 @@ const props = defineProps({
   },
   placeholder: {
     type: String,
-    default: '...'
+    default: "..."
   },
   type: {
     type: String,
-    default: 'text'
+    default: "text"
   },
   mask: {
     type: String,
-    defailt: ''
+    defailt: ""
   },
   required: {
     type: Boolean,
@@ -34,28 +34,28 @@ const props = defineProps({
   },
   rules: {
     type: String,
-    default: ''
+    default: ""
   },
   name: {
     type: String,
-    default: ''
+    default: ""
   },
   errors: {
     type: [Object],
     default: () => {}
   }
-})
+});
 
 // Data
 const maskOption = reactive({
   mask: props.mask,
   eager: true
-})
+});
 
 // Computeds
 const content = computed({
   get: () => {
-    if (props.type === 'date') {
+    if (props.type === "date") {
       const date = DateTime.fromMillis(Number(props.modelValue));
       const formattedDate = date.toISODate();
       return props.modelValue ? formattedDate : null;
@@ -63,14 +63,14 @@ const content = computed({
     return props.modelValue;
   },
   set: (value) => {
-    if (props.type === 'date') {
+    if (props.type === "date") {
       const date = DateTime.fromISO(String(value)).toMillis();
-      emit('update:modelValue', date);
+      emit("update:modelValue", date);
     } else {
-      emit('update:modelValue', value);
+      emit("update:modelValue", value);
     }
   }
-})
+});
 </script>
 
 <template>

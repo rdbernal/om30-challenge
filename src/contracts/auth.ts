@@ -1,8 +1,8 @@
 export default interface SignUpResponse {
-  accessToken: string,
+  accessToken: string;
   user: {
-    confirmPassword: string,
+    confirmPassword: string;
     email: string;
-    id: number
-  }
+    id: number;
+  };
 }

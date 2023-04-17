@@ -1,6 +1,3 @@
 export default class SignIn {
-  constructor(
-    public email: string = "",
-    public password: string = "",
-  ) {}
+  constructor(public email: string = "", public password: string = "") {}
 }

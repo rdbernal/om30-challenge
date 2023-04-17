@@ -1,40 +1,40 @@
 <script setup lang="ts">
-import { reactive } from 'vue'
-import router from '@/router'
+import { reactive } from "vue";
+import router from "@/router";
 
 // Components
-import PatientForm from '@/components/PatientForm/index.vue'
-import Loading from '@/components/Loading/index.vue'
+import PatientForm from "@/components/PatientForm/index.vue";
+import Loading from "@/components/Loading/index.vue";
 
 // Models
-import PatientModel from '@/models/Patient'
-import RequestProgressModel from '@/models/RequestProgress'
+import PatientModel from "@/models/Patient";
+import RequestProgressModel from "@/models/RequestProgress";
 
 // Services
-import PatientService from '@/services/PatientService'
+import PatientService from "@/services/PatientService";
 
 // Services instances
-const patientService = new PatientService()
+const patientService = new PatientService();
 
 // Data
-const patient = reactive(new PatientModel())
-const storeProgress = reactive(new RequestProgressModel())
+const patient = reactive(new PatientModel());
+const storeProgress = reactive(new RequestProgressModel());
 
 // Methods
 function handleSubmit() {
-  storePatient()
+  storePatient();
 }
 
 async function storePatient() {
   try {
-    storeProgress.startLoad()
-    await patientService.store({ ...patient })
-    storeProgress.stopWithSuccess()
+    storeProgress.startLoad();
+    await patientService.store({ ...patient });
+    storeProgress.stopWithSuccess();
     setInterval(() => {
-      router.push({name: "home"});
-    }, 1000)
+      router.push({ name: "home" });
+    }, 1000);
   } catch {
-    storeProgress.stopWithError()
+    storeProgress.stopWithError();
   }
 }
 </script>

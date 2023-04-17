@@ -1,22 +1,22 @@
 <script setup lang="ts">
-import { reactive } from 'vue';
-import router from '@/router';
+import { reactive } from "vue";
+import router from "@/router";
 import { keepAccessToken } from "@/utils/auth";
 
 // Components
-import CustomForm from '@/components/CustomForm/index.vue';
-import CustomInput from '@/components/CustomInput/index.vue';
+import CustomForm from "@/components/CustomForm/index.vue";
+import CustomInput from "@/components/CustomInput/index.vue";
 import Loading from "@/components/Loading/index.vue";
 
 // Contracts
-import type SignUpResponse from '@/contracts/auth'
+import type SignUpResponse from "@/contracts/auth";
 
 // Models
 import SignInModel from "@/models/SignIn";
 import RequestProgressModel from "@/models/RequestProgress";
 
 // Services
-import SignInService from '@/services/SignInService';
+import SignInService from "@/services/SignInService";
 
 // Services instances
 const signInService = new SignInService();
@@ -34,22 +34,21 @@ async function logIn() {
   try {
     signInProgress.startLoad();
 
-    const response = await signInService.signIn(signIn)
-    const { accessToken } = response as SignUpResponse
+    const response = await signInService.signIn(signIn);
+    const { accessToken } = response as SignUpResponse;
 
     if (!accessToken) {
-      throw new Error()
+      throw new Error();
     }
 
     keepAccessToken(accessToken);
-    router.push({ name: 'home' })
+    router.push({ name: "home" });
 
     signInProgress.stopWithSuccess();
   } catch {
     signInProgress.stopWithError();
   }
 }
-
 </script>
 
 <template>
@@ -58,19 +57,19 @@ async function logIn() {
       <h1>Login</h1>
 
       <CustomForm v-slot="{ errors, isValid }">
-        <CustomInput 
-          label="E-mail" 
-          placeholder="Digite seu e-mail" 
+        <CustomInput
+          label="E-mail"
+          placeholder="Digite seu e-mail"
           v-model="signIn.email"
           name="E-mail"
           rules="required|email"
           :required="true"
           :errors="errors"
         />
-        <CustomInput 
-          label="Senha" 
-          type="password" 
-          placeholder="Digite sua senha" 
+        <CustomInput
+          label="Senha"
+          type="password"
+          placeholder="Digite sua senha"
           v-model="signIn.password"
           name="Senha"
           rules="required|password"
@@ -86,7 +85,15 @@ async function logIn() {
           <Loading />
         </button>
 
-        <button v-else class="submit-button" type="button" :disabled="!isValid" @click="handleSubmit">Entrar</button>
+        <button
+          v-else
+          class="submit-button"
+          type="button"
+          :disabled="!isValid"
+          @click="handleSubmit"
+        >
+          Entrar
+        </button>
       </CustomForm>
     </div>
   </section>
@@ -114,7 +121,7 @@ async function logIn() {
   font-size: 1.5rem;
   font-weight: 700;
   text-align: center;
-  color: #00bd7e
+  color: #00bd7e;
 }
 
 form {

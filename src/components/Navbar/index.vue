@@ -1,12 +1,12 @@
 <script lang="ts" setup>
-import { RouterLink } from 'vue-router';
-import { clearAccessToken } from '@/utils/auth';
-import router from '@/router';
+import { RouterLink } from "vue-router";
+import { clearAccessToken } from "@/utils/auth";
+import router from "@/router";
 
 // Methods
 function handleLogout() {
   clearAccessToken();
-  router.push({name: "sign-in"});
+  router.push({ name: "sign-in" });
 }
 </script>
 

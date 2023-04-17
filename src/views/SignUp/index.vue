@@ -1,50 +1,50 @@
 <script setup lang="ts">
-import { reactive } from 'vue'
-import router from '@/router'
+import { reactive } from "vue";
+import router from "@/router";
 import { keepAccessToken } from "@/utils/auth";
 
 // Components
-import CustomForm from '@/components/CustomForm/index.vue'
-import CustomInput from '@/components/CustomInput/index.vue'
-import Loading from '@/components/Loading/index.vue'
+import CustomForm from "@/components/CustomForm/index.vue";
+import CustomInput from "@/components/CustomInput/index.vue";
+import Loading from "@/components/Loading/index.vue";
 
 // Contracts
-import type SignUpResponse from '@/contracts/auth'
+import type SignUpResponse from "@/contracts/auth";
 
 // Models
-import SignUpModel from '@/models/SignUp'
-import RequestProgressModel from '@/models/RequestProgress'
+import SignUpModel from "@/models/SignUp";
+import RequestProgressModel from "@/models/RequestProgress";
 
 // Services
-import SignUpService from '@/services/SignUpService'
+import SignUpService from "@/services/SignUpService";
 
 // Services instances
-const signUpService = new SignUpService()
+const signUpService = new SignUpService();
 
 // Data
-const signUp = reactive(new SignUpModel())
-const signUpProgress = reactive(new RequestProgressModel())
+const signUp = reactive(new SignUpModel());
+const signUpProgress = reactive(new RequestProgressModel());
 
 // Methods
 function handleSubmit() {
-  registerUser()
+  registerUser();
 }
 
 async function registerUser() {
   try {
-    signUpProgress.startLoad()
-    const response = await signUpService.signUp(signUp)
-    const { accessToken } = response as SignUpResponse
+    signUpProgress.startLoad();
+    const response = await signUpService.signUp(signUp);
+    const { accessToken } = response as SignUpResponse;
 
     if (!accessToken) {
-      throw new Error()
+      throw new Error();
     }
 
     keepAccessToken(accessToken);
-    router.push({ name: 'home' })
-    signUpProgress.stopWithSuccess()
+    router.push({ name: "home" });
+    signUpProgress.stopWithSuccess();
   } catch {
-    signUpProgress.stopWithError()
+    signUpProgress.stopWithError();
   }
 }
 </script>
@@ -140,7 +140,6 @@ form {
 .enter-account {
   text-align: center;
 }
-
 
 .error-message {
   text-align: center;

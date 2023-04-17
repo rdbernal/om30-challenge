@@ -1,12 +1,12 @@
-import BaseService from './BaseService'
+import BaseService from "./BaseService";
 
 // Model
-import SignUpModel from '@/models/SignUp'
+import SignUpModel from "@/models/SignUp";
 
 export default class SignUpService extends BaseService {
   constructor() {
-    super()
-    this.endpoint = '/users/register'
+    super();
+    this.endpoint = "/users/register";
   }
 
   public async signUp(signUp: SignUpModel): Promise<unknown> {
@@ -16,7 +16,7 @@ export default class SignUpService extends BaseService {
         "Content-Type": "application/json"
       },
       body: JSON.stringify(signUp)
-    })
+    });
 
     const result = response.json();
     return result;

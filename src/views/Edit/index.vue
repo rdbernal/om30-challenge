@@ -1,18 +1,18 @@
 <script setup lang="ts">
-import { ref, reactive, onMounted } from 'vue';
-import { useRoute } from 'vue-router';
-import router from '@/router';
+import { ref, reactive, onMounted } from "vue";
+import { useRoute } from "vue-router";
+import router from "@/router";
 
 // Components
-import PatientForm from '@/components/PatientForm/index.vue';
-import Loading from '@/components/Loading/index.vue'
+import PatientForm from "@/components/PatientForm/index.vue";
+import Loading from "@/components/Loading/index.vue";
 
 // Models
-import PatientModel from '@/models/Patient';
-import RequestProgressModel from '@/models/RequestProgress';
+import PatientModel from "@/models/Patient";
+import RequestProgressModel from "@/models/RequestProgress";
 
 // Services
-import PatientService from '@/services/PatientService';
+import PatientService from "@/services/PatientService";
 
 // Services instances
 const patientService = new PatientService();
@@ -40,7 +40,7 @@ async function destroyPatient(id: string) {
     await patientService.delete(id);
 
     destroyProgress.stopWithSuccess();
-    router.push({ name: 'home' });
+    router.push({ name: "home" });
   } catch {
     destroyProgress.stopWithError();
   }
@@ -53,7 +53,7 @@ async function updatePatient() {
     await patientService.update(patient.value);
 
     updateProgress.stopWithSuccess();
-    router.push({ name: 'home' });
+    router.push({ name: "home" });
   } catch {
     updateProgress.stopWithError();
   }
@@ -75,7 +75,7 @@ async function loadPatient(id: string) {
 onMounted(() => {
   const { id } = useRoute().params;
   loadPatient(String(id));
-})
+});
 </script>
 
 <template>

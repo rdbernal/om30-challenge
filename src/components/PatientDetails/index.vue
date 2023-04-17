@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-import { computed } from 'vue';
+import { computed } from "vue";
 import { DateTime } from "luxon";
 
 // Models
-import PatientModel from '@/models/Patient';
+import PatientModel from "@/models/Patient";
 
 // Props
 const props = defineProps({
@@ -11,7 +11,7 @@ const props = defineProps({
     type: PatientModel,
     required: true
   }
-})
+});
 // Computeds
 const address = computed(() => props.patient.address);
 
@@ -19,7 +19,7 @@ const birthDate = computed(() => {
   const date = new Date(props.patient.birthDate);
   const formattedDate = DateTime.fromJSDate(date).toFormat("dd/MM/yyyy");
   return formattedDate;
-})
+});
 </script>
 
 <template>

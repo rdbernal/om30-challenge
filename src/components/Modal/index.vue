@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 // Icons
-import Close from 'vue-material-design-icons/Close.vue';
+import Close from "vue-material-design-icons/Close.vue";
 
 // Events
-const emit = defineEmits(['close']);
+const emit = defineEmits(["close"]);
 
 //Methods
 function handleBackgroundClick(event: Event) {
@@ -14,7 +14,7 @@ function handleBackgroundClick(event: Event) {
 }
 
 function closeModal() {
-  emit('close');
+  emit("close");
 }
 </script>
 

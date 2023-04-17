@@ -1,23 +1,23 @@
 <script lang="ts" setup>
-import { computed } from 'vue';
+import { computed } from "vue";
 
 // Components
-import PulseLoader from 'vue-spinner/src/PulseLoader.vue';
+import PulseLoader from "vue-spinner/src/PulseLoader.vue";
 
 const props = defineProps({
   size: {
     type: String,
     default: "8"
   }
-})
+});
 // Computeds
 const loadingSize = computed(() => {
   return `${props.size}px`;
-})
-</script> 
+});
+</script>
 
 <template>
-  <PulseLoader :size="loadingSize"/>
+  <PulseLoader :size="loadingSize" />
 </template>
 
 <style scoped></style>

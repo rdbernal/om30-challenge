@@ -1,53 +1,53 @@
 <script setup lang="ts">
-import { ref, reactive, onMounted, watch } from 'vue'
-import type { Ref } from 'vue'
+import { ref, reactive, onMounted, watch } from "vue";
+import type { Ref } from "vue";
 
 // Components
-import CustomInput from '@/components/CustomInput/index.vue'
-import PatientCard from '@/components/PatientCard/index.vue'
-import Loading from '@/components/Loading/index.vue'
+import CustomInput from "@/components/CustomInput/index.vue";
+import PatientCard from "@/components/PatientCard/index.vue";
+import Loading from "@/components/Loading/index.vue";
 
 // Icons
-import Plus from 'vue-material-design-icons/Plus.vue'
+import Plus from "vue-material-design-icons/Plus.vue";
 
 // Models
-import PatientModel from '@/models/Patient'
-import RequestProgressModel from '@/models/RequestProgress'
+import PatientModel from "@/models/Patient";
+import RequestProgressModel from "@/models/RequestProgress";
 
 // Services
-import PatientService from '@/services/PatientService'
+import PatientService from "@/services/PatientService";
 
 // Services insntances
-const patientService = new PatientService()
+const patientService = new PatientService();
 
 // Data
-const searchValue = ref('')
-const indexProgress = reactive(new RequestProgressModel())
-const patients: Ref<PatientModel[]> = ref([])
+const searchValue = ref("");
+const indexProgress = reactive(new RequestProgressModel());
+const patients: Ref<PatientModel[]> = ref([]);
 
 // Methods
 async function loadPatients() {
   try {
-    indexProgress.startLoad()
+    indexProgress.startLoad();
 
-    const response = await patientService.index(searchValue.value)
-    patients.value = PatientModel.listSerializer(response)
+    const response = await patientService.index(searchValue.value);
+    patients.value = PatientModel.listSerializer(response);
 
-    indexProgress.stopWithSuccess()
+    indexProgress.stopWithSuccess();
   } catch {
-    indexProgress.stopWithError()
+    indexProgress.stopWithError();
   }
 }
 
 // Life cycle
 onMounted(() => {
-  loadPatients()
-})
+  loadPatients();
+});
 
 // Watchers
 watch(searchValue, () => {
-  loadPatients()
-})
+  loadPatients();
+});
 </script>
 
 <template>

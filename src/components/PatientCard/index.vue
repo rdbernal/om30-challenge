@@ -1,13 +1,13 @@
 <script lang="ts" setup>
-import { computed, ref } from 'vue'
+import { computed, ref } from "vue";
 import { DateTime } from "luxon";
 
 // Components
-import Modal from '@/components/Modal/index.vue';
-import PatientDetails from '@/components/PatientDetails/index.vue';
+import Modal from "@/components/Modal/index.vue";
+import PatientDetails from "@/components/PatientDetails/index.vue";
 
 // Models
-import PatientModel from '@/models/Patient';
+import PatientModel from "@/models/Patient";
 
 // Props
 const props = defineProps({
@@ -15,7 +15,7 @@ const props = defineProps({
     type: PatientModel,
     required: true
   }
-})
+});
 
 // Data
 const showModal = ref(false);
@@ -27,7 +27,7 @@ const birthDate = computed(() => {
   const date = new Date(props.patient.birthDate);
   const formattedDate = DateTime.fromJSDate(date).toFormat("dd/MM/yyyy");
   return formattedDate;
-})
+});
 </script>
 
 <template>
@@ -63,7 +63,7 @@ const birthDate = computed(() => {
 
     <footer>
       <button class="detail-button" @click="() => (showModal = true)">Detalhes</button>
-      <RouterLink :to="{ name: 'edit', params: {id: patient.id} }">
+      <RouterLink :to="{ name: 'edit', params: { id: patient.id } }">
         <button class="edit-button">Editar</button>
       </RouterLink>
     </footer>
@@ -126,7 +126,7 @@ footer {
 
 footer > .detail-button {
   width: 100%;
-  background: #18C1F0;
+  background: #18c1f0;
   color: #000000;
 }
 

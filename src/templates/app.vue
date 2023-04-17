@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { RouterView } from 'vue-router'
-import { onMounted, onUpdated } from 'vue';
+import { RouterView } from "vue-router";
+import { onMounted, onUpdated } from "vue";
 import { checkForToken } from "@/utils/auth";
 
 // Components
 import Navbar from "@/components/Navbar/index.vue";
-import router from '@/router';
+import router from "@/router";
 
 // Life cycle
 onMounted(() => {

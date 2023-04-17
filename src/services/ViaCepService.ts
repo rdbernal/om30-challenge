@@ -1,9 +1,8 @@
-
 export default class ViaCepService {
   constructor(
     public endpoint: string = "https://viacep.com.br",
     public path: string = "ws",
-    public format: string = "json",
+    public format: string = "json"
   ) {}
 
   public async getAddress(zipCode: string): Promise<unknown> {

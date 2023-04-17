@@ -1,25 +1,28 @@
 // Models
-import PatientModel from '@/models/Patient'
+import PatientModel from "@/models/Patient";
 // Services
-import BaseService from './BaseService'
+import BaseService from "./BaseService";
 
 export default class PatientService extends BaseService {
   constructor() {
-    super()
-    this.endpoint = 'patients'
+    super();
+    this.endpoint = "patients";
   }
 
   public async index(filter: string): Promise<unknown> {
-    const response = await fetch(`${this.connection}/${this.endpoint}${filter ? `?q=${filter}` : ""}`, {
-      method: 'GET'
-    }).then((response) => response.json())
+    const response = await fetch(
+      `${this.connection}/${this.endpoint}${filter ? `?q=${filter}` : ""}`,
+      {
+        method: "GET"
+      }
+    ).then((response) => response.json());
 
-    return response
+    return response;
   }
 
   public async show(id: string): Promise<void> {
-   const response = await fetch(`${this.connection}/${this.endpoint}/${id}`, {
-      method: 'GET'
+    const response = await fetch(`${this.connection}/${this.endpoint}/${id}`, {
+      method: "GET"
     }).then((response) => response.json());
 
     return response;
@@ -27,27 +30,27 @@ export default class PatientService extends BaseService {
 
   public async store(patient: PatientModel): Promise<void> {
     await fetch(`${this.connection}/${this.endpoint}`, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-type': 'application/json'
+        "Content-type": "application/json"
       },
       body: JSON.stringify(patient)
-    })
+    });
   }
 
   public async update(patient: PatientModel): Promise<void> {
     await fetch(`${this.connection}/${this.endpoint}/${patient.id}`, {
-      method: 'PUT',
+      method: "PUT",
       headers: {
-        'Content-type': 'application/json'
+        "Content-type": "application/json"
       },
       body: JSON.stringify(patient)
-    })
+    });
   }
 
   public async delete(id: string): Promise<void> {
     await fetch(`${this.connection}/${this.endpoint}/${id}`, {
-      method: 'DELETE'
-    })
+      method: "DELETE"
+    });
   }
 }
