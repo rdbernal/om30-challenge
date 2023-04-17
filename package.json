@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "vite",
-    "db": "json-server --watch ./src/database/db.json",
+    "db": "json-server-auth ./src/database/db.json",
     "build": "run-p type-check build-only",
     "preview": "vite preview",
     "build-only": "vite build",
@@ -16,6 +16,7 @@
     "@vee-validate/i18n": "^4.8.3",
     "@vee-validate/rules": "^4.8.4",
     "json-server": "^0.17.3",
+    "json-server-auth": "^2.1.0",
     "luxon": "^3.3.0",
     "maska": "^2.1.8",
     "vee-validate": "^4.8.4",

@@ -132,7 +132,7 @@ footer > .detail-button {
 
 footer > a > .edit-button {
   width: 100%;
-  background: hsla(160, 100%, 37%, 1);
+  background: #00bd7e;
   color: #000000;
 }
 </style>

@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { computed } from 'vue';
+import { DateTime } from "luxon";
 
 // Models
 import PatientModel from '@/models/Patient';
@@ -13,6 +14,12 @@ const props = defineProps({
 })
 // Computeds
 const address = computed(() => props.patient.address);
+
+const birthDate = computed(() => {
+  const date = new Date(props.patient.birthDate);
+  const formattedDate = DateTime.fromJSDate(date).toFormat("dd/MM/yyyy");
+  return formattedDate;
+})
 </script>
 
 <template>
@@ -27,7 +34,7 @@ const address = computed(() => props.patient.address);
     </div>
     <div>
       <label>Data de nascimento</label>
-      <span>{{ patient.birthDate }}</span>
+      <span>{{ birthDate }}</span>
     </div>
     <div>
       <label>CPF</label>

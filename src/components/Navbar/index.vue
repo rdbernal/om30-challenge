@@ -1,11 +1,19 @@
 <script lang="ts" setup>
 import { RouterLink } from 'vue-router';
+import { clearAccessToken } from '@/utils/auth';
+import router from '@/router';
+
+// Methods
+function handleLogout() {
+  clearAccessToken();
+  router.push({name: "sign-in"});
+}
 </script>
 
 <template>
   <nav>
     <RouterLink :to="{ name: 'home' }"> OM30 - H34lth </RouterLink>
-    <button class="log-out">Sair</button>
+    <button class="log-out" @click="handleLogout">Sair</button>
   </nav>
 </template>
 
