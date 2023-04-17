@@ -159,3 +159,39 @@ defineRule("confirmed", (value: string, [target]) => {
 
   return "As senhas precisam ser iguais";
 })
+
+defineRule("state", (value: string) => {
+  if ([
+    "AC",
+    "AL",
+    "AP",
+    "AM",
+    "BA",
+    "CE",
+    "DF",
+    "ES",
+    "GO",
+    "MA",
+    "MT",
+    "MS",
+    "MG",
+    "PA",
+    "PB",
+    "PR",
+    "PE",
+    "PI",
+    "RJ",
+    "RN",
+    "RS",
+    "RO",
+    "RR",
+    "SC",
+    "SP",
+    "SE",
+    "TO",
+  ].includes(value.toUpperCase())) {
+    return true;
+  }
+
+  return "Insira uma sigla válida"
+})

@@ -146,7 +146,7 @@ function updatePatientAddress(address: AddressModel) {
         placeholder="Estado"
         v-model="currentPatient.address.state"
         name="state"
-        rules="required"
+        rules="required|state"
         :required="true"
         :errors="errors"
       />
