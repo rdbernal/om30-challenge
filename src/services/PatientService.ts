@@ -9,8 +9,8 @@ export default class PatientService extends BaseService {
     this.endpoint = 'patients'
   }
 
-  public async index(): Promise<unknown> {
-    const response = await fetch(`${this.connection}/${this.endpoint}`, {
+  public async index(filter: string): Promise<unknown> {
+    const response = await fetch(`${this.connection}/${this.endpoint}${filter ? `?q=${filter}` : ""}`, {
       method: 'GET'
     }).then((response) => response.json())
 

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, reactive, onMounted } from 'vue'
+import { ref, reactive, onMounted, watch } from 'vue'
 import type { Ref } from 'vue'
 
 // Components
@@ -30,17 +30,22 @@ async function loadPatients() {
   try {
     indexProgress.startLoad()
 
-    const response = await patientService.index()
+    const response = await patientService.index(searchValue.value)
     patients.value = PatientModel.listSerializer(response)
 
     indexProgress.stopWithSuccess()
   } catch {
     indexProgress.stopWithError()
-  }  
+  }
 }
 
 // Life cycle
 onMounted(() => {
+  loadPatients()
+})
+
+// Watchers
+watch(searchValue, () => {
   loadPatients()
 })
 </script>
@@ -49,7 +54,11 @@ onMounted(() => {
   <section class="content">
     <main>
       <div class="filter">
-        <CustomInput label="Filtrar" placeholder="Digite para buscar" v-model="searchValue" />
+        <CustomInput
+          label="Filtrar"
+          placeholder="Busque por nome, bairro, cidade ou cns..."
+          v-model="searchValue"
+        />
       </div>
 
       <div class="new-patient">

@@ -1,5 +1,24 @@
 {
-  "users": [],
+  "users": [
+    {
+      "email": "rodrigobernal19@gmail.com",
+      "password": "$2a$10$tQlKFmRrawgLXywvtBWcF.R/5DH.RSMRBeVFdmuXtoi5SbEf0DeIS",
+      "confirmPassword": "abc123",
+      "id": 1
+    },
+    {
+      "email": "rodrigobernal19@teste.com",
+      "password": "$2a$10$A5P7YrJA8hVI2MxDeAloauZrQgWosMooTYIjdyU89WZOluYpa6gke",
+      "confirmPassword": "abc123",
+      "id": 2
+    },
+    {
+      "email": "teste@teste.com",
+      "password": "$2a$10$KBhtTe7WlFld90T9VeM/DuG7MW8oYbquN0XT/1Ej5hfhLzDWCXeNG",
+      "confirmPassword": "abc123",
+      "id": 3
+    }
+  ],
   "patients": [
     {
       "id": 7,
@@ -98,6 +117,23 @@
         "street": "Rua Jayme Theodoro de Moraes",
         "number": "56",
         "neighborhood": "Central Parque Sorocaba",
+        "complement": "",
+        "state": "SP",
+        "city": "Sorocaba"
+      }
+    },
+    {
+      "id": 14,
+      "fullName": "Lincoln Ueda",
+      "mothersName": "Maria Conceição",
+      "birthDate": 698468400000,
+      "registrationId": "418.201.978-40",
+      "healthcareId": "126 4436 4621 0008",
+      "address": {
+        "zipCode": "18053-400",
+        "street": "Estrada do Ipatinga",
+        "number": "31",
+        "neighborhood": "Vivendas do Lago",
         "complement": "",
         "state": "SP",
         "city": "Sorocaba"
