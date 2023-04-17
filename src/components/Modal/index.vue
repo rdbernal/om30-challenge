@@ -54,7 +54,7 @@ function closeModal() {
 }
 
 .modal {
-  min-width: 300px;
+  min-width: 320px;
   padding: 2rem;
   border-radius: 0.5rem;
   background: var(--vt-c-black-mute);

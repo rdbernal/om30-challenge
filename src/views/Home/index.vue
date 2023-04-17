@@ -86,7 +86,7 @@ watch(searchValue, () => {
 <style scoped>
 .content {
   min-height: calc(100vh - 65.27px);
-  padding: 0 1rem;
+  padding: 0 1rem 1rem 1rem;
 }
 
 main {
@@ -116,5 +116,17 @@ main {
 .new-patient > a > button {
   background: #00bd7e;
   color: #000000;
+}
+
+@media screen and (max-width: 1340px) {
+  .patients-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 840px) {
+  .patients-list {
+    grid-template-columns: 1fr;
+  }
 }
 </style>

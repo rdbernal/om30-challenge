@@ -174,4 +174,11 @@ function updatePatientAddress(address: AddressModel) {
   column-gap: 2rem;
   row-gap: 0.75rem;
 }
+
+@media screen and (max-width: 840px) {
+  .fields {
+    display: flex;
+    flex-direction: column;
+  }
+}
 </style>

@@ -149,4 +149,16 @@ form {
   filter: grayscale(1);
   cursor: default;
 }
+
+@media (max-width: 600px) {
+  .wrapper {
+    width: 95%;
+    padding: 2rem 1rem;
+  }
+
+  form {
+    width: 100%;
+    padding: 2rem 1rem;
+  }
+}
 </style>

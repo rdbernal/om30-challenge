@@ -128,7 +128,7 @@ onMounted(() => {
 <style scoped>
 .content {
   min-height: calc(100vh - 65.27px);
-  padding: 0 1rem;
+  padding: 0 1rem 1rem 1rem;
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -179,5 +179,16 @@ header > h1 {
 .save-button:disabled {
   filter: grayscale(1);
   cursor: default;
+}
+
+@media screen and (max-width: 840px) {
+  .actions {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .actions > button {
+    width: 100%;
+  }
 }
 </style>

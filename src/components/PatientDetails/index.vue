@@ -47,7 +47,7 @@ const birthDate = computed(() => {
     <div>
       <label>Endereço</label>
       <div>
-        <span>{{ address.street }}, {{ address.number }} - {{ address.complement }}</span>
+        <span>{{ address.street }}, {{ address.number }} {{ address.complement }}</span>
         <span>{{ address.neighborhood }}</span>
         <span>{{ address.city }} - {{ address.state }}</span>
         <span>{{ address.zipCode }}</span>
