@@ -29,10 +29,8 @@ const patients: Ref<PatientModel[]> = ref([]);
 async function loadPatients() {
   try {
     indexProgress.startLoad();
-
     const response = await patientService.index(searchValue.value);
     patients.value = PatientModel.listSerializer(response);
-
     indexProgress.stopWithSuccess();
   } catch {
     indexProgress.stopWithError();
@@ -75,6 +73,10 @@ watch(searchValue, () => {
           <Loading />
         </div>
 
+        <div v-else-if="indexProgress.success && patients.length === 0" class="empty-state">
+          <h2>Nenhum paciente cadastrado</h2>
+        </div>
+
         <div v-else class="patients-list">
           <PatientCard v-for="patient in patients" :key="patient.id" :patient="patient" />
         </div>
@@ -95,7 +97,8 @@ main {
   gap: 2rem;
 }
 
-.loading {
+.loading,
+.empty-state {
   height: 331px;
   display: flex;
   align-items: center;

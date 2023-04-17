@@ -3,6 +3,7 @@ import { toRef } from "vue";
 // Components
 import CustomForm from "@/components/CustomForm/index.vue";
 import CustomInput from "@/components/CustomInput/index.vue";
+import ImageInput from "@/components/ImageInput/index.vue";
 
 // Models
 import PatientModel from "@/models/Patient";
@@ -46,6 +47,19 @@ function updatePatientAddress(address: AddressModel) {
 
 <template>
   <CustomForm v-slot="{ errors, isValid }">
+    <div class="user-picture">
+      <img
+        v-if="currentPatient.imageUrl"
+        :src="currentPatient.imageUrl"
+        alt="Patient profile picture"
+      />
+
+      <ImageInput
+        :label="patient.imageUrl ? 'Alterar foto' : 'Adicionar uma foto'"
+        v-model="currentPatient.imageUrl"
+      />
+    </div>
+
     <div class="fields">
       <CustomInput
         label="Nome completo"
@@ -168,6 +182,20 @@ function updatePatientAddress(address: AddressModel) {
 </template>
 
 <style scoped>
+.user-picture {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  justify-content: flex-start;
+  margin-bottom: 1rem;
+}
+
+.user-picture > img {
+  width: 5rem;
+  height: 5rem;
+  object-fit: cover;
+  border-radius: 50%;
+}
 .fields {
   display: grid;
   grid-template-columns: repeat(3, 1fr);

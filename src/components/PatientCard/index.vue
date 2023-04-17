@@ -40,7 +40,7 @@ const birthDate = computed(() => {
     </Modal>
 
     <header>
-      <img src="@/assets/img/profile-picture.jpeg" alt="Profile picture" />
+      <img v-if="patient.imageUrl" :src="patient.imageUrl" alt="Profile picture" />
       <div>
         <h3>{{ patient.fullName }}</h3>
         <div>
@@ -88,7 +88,8 @@ header {
 
 header > img {
   width: 4rem;
-  height: auto;
+  height: 4rem;
+  object-fit: cover;
   border-radius: 50%;
 }
 

@@ -36,11 +36,9 @@ function handleSubmit() {
 async function destroyPatient(id: string) {
   try {
     destroyProgress.startLoad();
-
     await patientService.delete(id);
-
     destroyProgress.stopWithSuccess();
-    router.push({ name: "home" });
+    redirectToHomePage();
   } catch {
     destroyProgress.stopWithError();
   }
@@ -49,11 +47,9 @@ async function destroyPatient(id: string) {
 async function updatePatient() {
   try {
     updateProgress.startLoad();
-
     await patientService.update(patient.value);
-
     updateProgress.stopWithSuccess();
-    router.push({ name: "home" });
+    redirectToHomePage();
   } catch {
     updateProgress.stopWithError();
   }
@@ -62,14 +58,20 @@ async function updatePatient() {
 async function loadPatient(id: string) {
   try {
     showProgress.startLoad();
-
     const response = await patientService.show(id);
     patient.value = PatientModel.showSerializer(response);
-
+    if (!patient.value.id) {
+      throw new Error();
+    }
     showProgress.stopWithSuccess();
   } catch {
+    redirectToHomePage();
     showProgress.stopWithError();
   }
+}
+
+function redirectToHomePage() {
+  router.push({ name: "home" });
 }
 
 onMounted(() => {
@@ -85,7 +87,11 @@ onMounted(() => {
     </header>
 
     <main>
-      <PatientForm :patient="patient" v-slot="{ isValid }">
+      <div v-if="showProgress.loading" class="loading">
+        <Loading />
+      </div>
+
+      <PatientForm v-else :patient="patient" v-slot="{ isValid }">
         <div class="actions">
           <button
             v-if="destroyProgress.loading"
@@ -137,6 +143,13 @@ onMounted(() => {
 header > h1 {
   font-size: 1.3rem;
   font-weight: 700;
+}
+
+.loading {
+  height: 331px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .actions {

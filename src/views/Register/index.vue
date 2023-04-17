@@ -29,10 +29,8 @@ async function storePatient() {
   try {
     storeProgress.startLoad();
     await patientService.store({ ...patient });
+    router.push({ name: "home" });
     storeProgress.stopWithSuccess();
-    setInterval(() => {
-      router.push({ name: "home" });
-    }, 1000);
   } catch {
     storeProgress.stopWithError();
   }

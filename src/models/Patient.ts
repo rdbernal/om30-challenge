@@ -3,6 +3,7 @@ import Address from "./Address";
 
 interface ShowResponse {
   id: string;
+  imageUrl: string;
   fullName: string;
   mothersName: string;
   birthDate: number;
@@ -14,6 +15,7 @@ interface ShowResponse {
 export default class Patient {
   constructor(
     public id: string = "",
+    public imageUrl: string = "",
     public fullName: string = "",
     public mothersName: string = "",
     public birthDate: number = 0,
@@ -28,6 +30,7 @@ export default class Patient {
     return data.map((patient) => {
       return new Patient(
         patient.id,
+        patient.imageUrl,
         patient.fullName,
         patient.mothersName,
         patient.birthDate,
@@ -53,6 +56,7 @@ export default class Patient {
 
     return new Patient(
       patient.id,
+      patient.imageUrl,
       patient.fullName,
       patient.mothersName,
       patient.birthDate,
