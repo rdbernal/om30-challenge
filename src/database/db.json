@@ -1,24 +1,5 @@
 {
-  "users": [
-    {
-      "email": "rodrigobernal19@gmail.com",
-      "password": "$2a$10$tQlKFmRrawgLXywvtBWcF.R/5DH.RSMRBeVFdmuXtoi5SbEf0DeIS",
-      "confirmPassword": "abc123",
-      "id": 1
-    },
-    {
-      "email": "rodrigobernal19@teste.com",
-      "password": "$2a$10$A5P7YrJA8hVI2MxDeAloauZrQgWosMooTYIjdyU89WZOluYpa6gke",
-      "confirmPassword": "abc123",
-      "id": 2
-    },
-    {
-      "email": "teste@teste.com",
-      "password": "$2a$10$KBhtTe7WlFld90T9VeM/DuG7MW8oYbquN0XT/1Ej5hfhLzDWCXeNG",
-      "confirmPassword": "abc123",
-      "id": 3
-    }
-  ],
+  "users": [],
   "patients": [
     {
       "id": 7,
