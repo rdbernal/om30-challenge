@@ -12,6 +12,10 @@ Sistema de cadastro de pacientes com listagem, adição, edição, visualizaçã
 - JSON Server
 - JSON Server Auth
 
+## 📡 APIs externas
+
+- ViaCEP
+
 ## 📂 Rodando o projeto
 
 1. Clone do repositório
@@ -46,7 +50,12 @@ Sistema de cadastro de pacientes com listagem, adição, edição, visualizaçã
 
 ## 💻 Utilizando o sistema
 
-1. Criar conta utilizando e-mail e senha (não há necessidade de caracteres especiais ou números).
-2. Utilizar geradores de CPF (preferencialmente estado de SP) e CNS:
-   1. Gerador de CPF: https://www.4devs.com.br/gerador_de_cpf
-   2. Gerador de CNS: https://geradornv.com.br/gerador-cns/
+1. Criar conta utilizando e-mail e senha (não há necessidade de caracteres especiais ou números), ou utilizar uma conta demo.
+   
+   - login: om30@teste.com
+   - senha: abc123
+  
+2. Utilizar geradores de CPF (preferencialmente estado de SP) e CNS. Alguns valores de CPF gerados não são aceitos, mas a grande maioria passa pela validação.
+   
+   - Gerador de CPF: https://www.4devs.com.br/gerador_de_cpf
+   - Gerador de CNS: https://geradornv.com.br/gerador-cns/

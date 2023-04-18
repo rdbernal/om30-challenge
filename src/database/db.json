@@ -1,4 +1,11 @@
 {
-  "users": [],
+  "users": [
+    {
+      "email": "om30@teste.com",
+      "password": "$2a$10$bKDDpAKWZxsto4xWXHVq5ehlj3kgSqcNcg/JxAZ6dno8R03Mal.su",
+      "confirmPassword": "abc123",
+      "id": 2
+    }
+  ],
   "patients": []
 }
